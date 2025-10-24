@@ -3,39 +3,45 @@ server:
 spring:
   application:
     name: gateway
+  profiles:
+    active: dev
   cloud:
     nacos:
       server-addr: 172.29.199.37:8848
-    gateway:
-      routes:
-        - id: cart-service
-          uri: lb://cart-service
-          predicates:
-            - Path=/carts/**
-        - id: item-service
-          uri: lb://item-service
-          predicates:
-            - Path=/items/**
-        - id: item-service
-          uri: lb://item-service
-          predicates:
-            - Path=/search/**
-        - id: pay-service
-          uri: lb://pay-service
-          predicates:
-            - Path=/pay-orders/**
-        - id: trade-service
-          uri: lb://trade-service
-          predicates:
-            - Path=/orders/**
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/users/**
-        - id: user-service
-          uri: lb://user-service
-          predicates:
-            - Path=/addresses/**
+      config:
+        import-check:
+          enabled: false # 关闭配置文件的导入检查，当需要导入的配置文件不存在时，不会报错
+        namespace: ${spring.profiles.active}
+#    gateway:
+#      routes:
+#        - id: cart-service
+#          uri: lb://cart-service
+#          predicates:
+#            - Path=/carts/**
+#        - id: item-service
+#          uri: lb://item-service
+#          predicates:
+#            - Path=/items/**
+#        - id: item-service
+#          uri: lb://item-service
+#          predicates:
+#            - Path=/search/**
+#        - id: pay-service
+#          uri: lb://pay-service
+#          predicates:
+#            - Path=/pay-orders/**
+#        - id: trade-service
+#          uri: lb://trade-service
+#          predicates:
+#            - Path=/orders/**
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/users/**
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/addresses/**
 logging:
   level:
     com.hmall: debug

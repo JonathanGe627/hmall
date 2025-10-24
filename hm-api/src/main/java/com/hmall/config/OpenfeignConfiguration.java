@@ -1,5 +1,6 @@
 package com.hmall.config;
 
+import com.hmall.feign.fallback.ItemFeignClientFallbackFactory;
 import com.hmall.interceptor.UserInfoRequestInterceptor;
 import feign.Logger;
 import feign.RequestInterceptor;
@@ -22,5 +23,10 @@ public class OpenfeignConfiguration {
     @Bean
     RequestInterceptor userInfoRequestInterceptor(){
         return new UserInfoRequestInterceptor();
+    }
+
+    @Bean
+    ItemFeignClientFallbackFactory itemFeignClientFallbackFactory(){
+        return new ItemFeignClientFallbackFactory();
     }
 }
