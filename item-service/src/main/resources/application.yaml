@@ -16,3 +16,4 @@ spring:
     import:
       - nacos:item-service.yaml?group=ITEM_GROUP
       - nacos:common.yaml?group=DEFAULT_GROUP
+      - nacos:shared-seata.yaml?group=DEFAULT_GROUP
